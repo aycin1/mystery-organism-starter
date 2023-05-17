@@ -1,6 +1,7 @@
+const dnaBases = ["A", "T", "C", "G"];
+
 // Returns a random DNA base
 const returnRandBase = () => {
-  const dnaBases = ['A', 'T', 'C', 'G'];
   return dnaBases[Math.floor(Math.random() * 4)];
 };
 
@@ -13,10 +14,35 @@ const mockUpStrand = () => {
   return newStrand;
 };
 
+function pAequorFactory(specimenNum, dna) {
+  return {
+    specimenNum: specimenNum,
+    dna: dna,
+    mutate() {
+      const indexOfBaseToChange = Math.floor(Math.random() * 15);
+      const baseOptions = Object.values(dnaBases);
+      baseOptions.splice(baseOptions.indexOf(dna[indexOfBaseToChange]), 1);
+      dna[indexOfBaseToChange] = baseOptions[Math.floor(Math.random() * 3)];
+      return dna;
+    },
+  };
+}
+let pAequor1 = pAequorFactory(1, [
+  "T",
+  "G",
+  "A",
+  "C",
+  "G",
+  "C",
+  "A",
+  "C",
+  "C",
+  "T",
+  "C",
+  "T",
+  "C",
+  "C",
+  "A",
+]);
 
-
-
-
-
-
-
+console.log(pAequor1.mutate());
