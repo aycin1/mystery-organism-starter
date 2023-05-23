@@ -37,6 +37,7 @@ const pAequorFactory = (specimenNum, dna) => {
       console.log(
         `specimen #${specimenNum} and specimen #${pAequor2.specimenNum} have ${similarDNApercent}% DNA in common`
       );
+      return similarDNApercent;
     },
     willLikelySurvive() {
       let counter = 0;
@@ -71,14 +72,16 @@ const arrOfSurvivors = () => {
 };
 
 const mostRelatedSpecimens = () => {
-  const pAequors = arrOfSurvivors();
-  let mostRelatedSpecimens;
+  const pAequors = Object.values(arrOfSurvivors());
+  let similarDNA = 0;
+  let info;
   for (let i = 0; i < pAequors.length; i++) {
-    for (let j = 1; i < j; j++) {
-      if (pAequors[i].compareDNA(j).similarDNApercent > 60) {
-        mostRelatedSpecimens = [i, j];
+    for (let j = i + 1; j < pAequors.length - 1; j++) {
+      if (pAequors[i].compareDNA(pAequors[j]) > similarDNA) {
+        similarDNA = pAequors[i].compareDNA(pAequors[j]);
+        info = `specimen #${pAequors[i].specimenNum} and specimen #${pAequors[j].specimenNum} have ${similarDNA}% of the same DNA, meaning they're the most related`;
       }
     }
-    return mostRelatedSpecimens;
   }
+  return info;
 };
