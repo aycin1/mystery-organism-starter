@@ -14,10 +14,11 @@ const mockUpStrand = () => {
   return newStrand;
 };
 
-function pAequorFactory(specimenNum, dna) {
+const pAequorFactory = (specimenNum, dna) => {
   return {
     specimenNum: specimenNum,
     dna: dna,
+
     mutate() {
       const indexOfBaseToChange = Math.floor(Math.random() * 15);
       const baseOptions = Object.values(dnaBases);
@@ -48,40 +49,13 @@ function pAequorFactory(specimenNum, dna) {
       return baseCorGPercent >= 60 ? true : false;
     },
   };
-}
+};
 
-let pAequor1 = pAequorFactory(1, [
-  "T",
-  "G",
-  "A",
-  "C",
-  "G",
-  "C",
-  "A",
-  "C",
-  "C",
-  "T",
-  "C",
-  "T",
-  "C",
-  "C",
-  "A",
-]);
-let pAequor2 = pAequorFactory(2, [
-  "T",
-  "G",
-  "A",
-  "C",
-  "G",
-  "C",
-  "A",
-  "C",
-  "C",
-  "A",
-  "C",
-  "G",
-  "C",
-  "C",
-  "C",
-]);
-console.log(pAequor1.willLikelySurvive());
+const arrOfSurvivors = () => {
+  let pAequors = [];
+  for (let i = 0; pAequors.length < 30; i++) {
+    const pAequor = pAequorFactory(i, mockUpStrand());
+    if (pAequor.willLikelySurvive() === true) pAequors.push(pAequor);
+  }
+  return pAequors;
+};
