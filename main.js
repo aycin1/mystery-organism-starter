@@ -27,16 +27,25 @@ function pAequorFactory(specimenNum, dna) {
     },
     compareDNA(pAequor2) {
       let counter = 0;
-      for (let base1 in dna) {
-        if (dna[base1] === pAequor2.dna[base1]) {
+      for (let base in dna) {
+        if (dna[base] === pAequor2.dna[base]) {
           counter += 1;
         }
       }
-      console.log(counter);
       const similarDNApercent = (counter / 15) * 100;
       console.log(
         `specimen #${specimenNum} and specimen #${pAequor2.specimenNum} have ${similarDNApercent}% DNA in common`
       );
+    },
+    willLikelySurvive() {
+      let counter = 0;
+      for (let base in dna) {
+        if ((dna[base] === "C") | (dna[base] === "G")) {
+          counter += 1;
+        }
+      }
+      const baseCorGPercent = (counter / 15) * 100;
+      return baseCorGPercent > 60 ? true : false;
     },
   };
 }
@@ -75,3 +84,4 @@ let pAequor2 = pAequorFactory(2, [
   "C",
   "C",
 ]);
+console.log(pAequor1.willLikelySurvive());
