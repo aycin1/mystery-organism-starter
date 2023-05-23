@@ -62,10 +62,23 @@ const pAequorFactory = (specimenNum, dna) => {
 };
 
 const arrOfSurvivors = () => {
-  let pAequors = [];
+  const pAequors = [];
   for (let i = 0; pAequors.length < 30; i++) {
     const pAequor = pAequorFactory(i, mockUpStrand());
     if (pAequor.willLikelySurvive() === true) pAequors.push(pAequor);
   }
   return pAequors;
+};
+
+const mostRelatedSpecimens = () => {
+  const pAequors = arrOfSurvivors();
+  let mostRelatedSpecimens;
+  for (let i = 0; i < pAequors.length; i++) {
+    for (let j = 1; i < j; j++) {
+      if (pAequors[i].compareDNA(j).similarDNApercent > 60) {
+        mostRelatedSpecimens = [i, j];
+      }
+    }
+    return mostRelatedSpecimens;
+  }
 };
