@@ -48,6 +48,16 @@ const pAequorFactory = (specimenNum, dna) => {
       const baseCorGPercent = (counter / 15) * 100;
       return baseCorGPercent >= 60 ? true : false;
     },
+    complementStrand() {
+      const compDNA = [];
+      for (let base of dna) {
+        if (base === "A") compDNA.push("T");
+        else if (base === "C") compDNA.push("G");
+        else if (base === "T") compDNA.push("A");
+        else if (base === "G") compDNA.push("C");
+      }
+      return compDNA;
+    },
   };
 };
 
