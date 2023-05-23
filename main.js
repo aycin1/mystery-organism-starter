@@ -25,8 +25,22 @@ function pAequorFactory(specimenNum, dna) {
       dna[indexOfBaseToChange] = baseOptions[Math.floor(Math.random() * 3)];
       return dna;
     },
+    compareDNA(pAequor2) {
+      let counter = 0;
+      for (let base1 in dna) {
+        if (dna[base1] === pAequor2.dna[base1]) {
+          counter += 1;
+        }
+      }
+      console.log(counter);
+      const similarDNApercent = (counter / 15) * 100;
+      console.log(
+        `specimen #${specimenNum} and specimen #${pAequor2.specimenNum} have ${similarDNApercent}% DNA in common`
+      );
+    },
   };
 }
+
 let pAequor1 = pAequorFactory(1, [
   "T",
   "G",
@@ -44,5 +58,20 @@ let pAequor1 = pAequorFactory(1, [
   "C",
   "A",
 ]);
-
-console.log(pAequor1.mutate());
+let pAequor2 = pAequorFactory(2, [
+  "T",
+  "G",
+  "A",
+  "C",
+  "G",
+  "C",
+  "A",
+  "C",
+  "C",
+  "A",
+  "C",
+  "G",
+  "C",
+  "C",
+  "C",
+]);
