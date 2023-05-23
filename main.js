@@ -45,7 +45,7 @@ function pAequorFactory(specimenNum, dna) {
         }
       }
       const baseCorGPercent = (counter / 15) * 100;
-      return baseCorGPercent > 60 ? true : false;
+      return baseCorGPercent >= 60 ? true : false;
     },
   };
 }
